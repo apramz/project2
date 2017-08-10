@@ -1,0 +1,30 @@
+{% load static %}
+<html>
+	<head>
+		<title>{% block head_title %}{% endblock %}</title>
+		<link href="{% static 'reminder/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+	</head>
+	<body>
+		<nav class="navbar fixed-top navbar-light">
+				<a class="navbar-brand" href="#">jarvis</a>
+		</nav>
+		<div>
+			{% if user.is_authenticated %}
+				<p>Hello {{ user.username }} <small>(<a href="{% url 'logout' %}">Log Out</a>)</small></p>
+				<a href="{% url 'index' %}">Home</a>
+				{% for team in user.teams.all %}
+					<a href="{{ team.get_absolute_url }}">{{ team.name }}</a>
+				{% endfor %}
+			{% else %}
+				<a href="{% url 'login' %}">Login</a>
+			{% endif %}
+		</div>
+		<h1>{% block title %}
+			{% endblock %}
+		</h1>
+		{% block content %}
+		{% endblock %}
+	</body>
+</html>
+<script src="{% static 'reminder/scripts/jquery.js' %}"></script>
+<script src="{% static 'reminder/scripts/app.js' %}"></script>

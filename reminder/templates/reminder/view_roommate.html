@@ -1,0 +1,14 @@
+{% extends 'reminder/base.html' %}
+{% block title %} {{ roommate.name }} {% endblock %}
+
+{% block content %}
+	<h2>Team: {{ roommate.team }}</h2>
+	<p>Phone Number: {{ roommate.phone_number }}</p>
+	<ul>
+	{% for chores in roommate.chores %}
+		<li>{{ chore.name }}</li>
+	{% empty %}
+		<p>No registered chores for me!</p>
+	{% endfor %}
+	</ul>
+{% endblock %}

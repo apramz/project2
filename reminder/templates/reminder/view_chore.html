@@ -1,0 +1,20 @@
+{% extends 'reminder/base.html' %}
+{% block title %} {{ chore.name }} {% endblock %}
+
+{% block content %}
+	<p>Description: {{ chore.description }}</p>
+	<p>Deadline: {{ chore.deadline }}</p>
+	<p>Assigned to: {{ chore.roommate }}</p>
+	<p>Status: {{ chore.get_status_display }}</p>
+	<p><a href="{% url 'alert_now' slug=chore.slug %}">Send Reminder Now</a></p>
+	<form id="alert_later" action="{% url 'alert_later' slug=chore.slug %}" method="POST">
+	{% csrf_token %}
+		{{ alertlater_form }}
+		<input type="submit" value="Submit" />
+	</form>
+	<form id='alert_recurring' action="{% url 'alert_recurring' slug=chore.slug %}" method="POST">
+	{% csrf_token %}
+		{{ alertrecurring_form }}
+		<input type="submit" value="Submit" />
+	</form>
+{% endblock %}

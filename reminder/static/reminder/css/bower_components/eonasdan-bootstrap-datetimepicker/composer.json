@@ -1,0 +1,28 @@
+{
+  "name": "tempusdominus/core",
+  "type": "component",
+  "version": "5.0.0-alpha8",
+  "description": "Date/time picker widget core",
+  "keywords": [
+    "bootstrap",
+    "datetimepicker"
+  ],
+  "homepage": "https://github.com/tempusdominus/core",
+  "license": "MIT",
+  "require": {
+    "robloach/component-installer": "*",
+    "components/jquery": ">=1.9.1",
+    "moment": ">=2.10.5"
+  },
+  "extra": {
+    "component": {
+      "scripts": [
+        "src/js/core.js"
+      ],
+      "files": [
+        "build/js/bootstrap-datetimepicker.min.js",
+        "build/css/bootstrap-datetimepicker.min.css"
+      ]
+    }
+  }
+}

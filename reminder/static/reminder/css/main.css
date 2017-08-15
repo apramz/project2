@@ -27,3 +27,39 @@
 .page-title {
 	text-align: center;
 }
+
+.team-index .col-lg-4 {
+	text-align: center;
+	margin: 1.5rem;
+}
+
+.team-index .card {
+	padding: 1.5rem;
+	margin: 0 auto;
+}
+
+/********************************
+*********************************
+			TEAM PAGE
+*********************************
+*********************************/
+
+.card-header[role=tab] {
+	background-color: #ffffff;
+
+}
+
+.card-body {
+	padding: 1rem;
+}
+
+/********************************
+*********************************
+			FORMS
+*********************************
+*********************************/
+.card.form {
+	width: 20rem;
+    margin: 0 auto;
+    padding: 2rem;
+}

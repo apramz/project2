@@ -122,7 +122,8 @@ def alert_later(request, slug):
 
 	#Incorporates the sending date/time and uses while loop to pause function until the right time
 	raw_datetime = request.POST.get('date')
-	datetime_format = '%Y-%m-%d %H:%M:%S'
+	print (raw_datetime)
+	datetime_format = '%m/%d/%Y %I:%M %p'
 	future_datetime = datetime.datetime.strptime(raw_datetime, datetime_format)
 
 	while datetime.datetime.now() < future_datetime:
@@ -155,18 +156,22 @@ def alert_recurring(request, slug):
 	future_datetime = raw_datetime.replace(tzinfo=None)
 	#Pulling from the Request object
 	day = request.POST.get('day').lower()
-	time_ = str(request.POST.get('time'))
+	raw_time = str(request.POST.get('time'))
+	time_ = str(datetime.datetime.strptime(raw_time, '%I:%M %p').time())[:-3]  
 
 	def schedule_process(day, time_, slug):
 		sched1 = schedule.every()
 		sched2 = getattr(sched1, day)
-		sched3 = sched2.at(time_).do(send_message, slug)
+		sched3 = sched2.at(time_).do(send_message, slug).tag(slug)
 		return sched3
 	job = schedule_process(day, time_, slug)
+
+	print (datetime.datetime.now() < future_datetime )
 
 	#Scheduling - While loop keeps function online until deadline
 	while datetime.datetime.now() < future_datetime:
 		schedule.run_pending()
 		time.sleep(1)
+
 
 	return HttpResponse('Woot')

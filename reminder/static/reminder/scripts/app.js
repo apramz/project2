@@ -66,6 +66,16 @@ $.ajaxSetup({
 		});
 	});
 
+ 	$(function () {
+        $('#datetimepicker1').datetimepicker();
+    });
+
+    $(function () {
+        $('#datetimepicker2').datetimepicker({
+        	format: 'LT'
+        });
+    });
+
 };
 
 $(document).ready(main)

@@ -1,24 +1,42 @@
 {% extends 'reminder/base.html' %}
 {% block title %} {{ team.name }} {% endblock %}
 {% block content %}
-	<h2>Roommates:</h2>
 	<a href="{% url 'create_roommate' %}"><strong>Add+</strong></a>
-	<ul>
-	{% for roommate in team.roommates.all %}
-		<li><a href="{{ roommate.get_absolute_url }}">{{ roommate.name }}</a></li>
-	{% empty %}
-		<p>No roommates registered yet!</p>
-		<a href="{% url 'create_roommate' %}">Add Roommate</a>
-	{% endfor %}
-	</ul>
-	<h2>Chores:</h2>
+
+	<div id="accordionOne" role="tablist">
+		<div class="card">
+			<div class="card-header" role="tab" id="headingOne">
+				<h5><a data-toggle="collapse" href="#collapseOne">Roommates</a></h5>
+			</div>
+			<div id="collapseOne" class="collapse" role="tabpanel" data-parent="#accordionOne">
+				<div class="card-body">
+					{% for roommate in team.roommates.all %}
+						<li><a href="{{ roommate.get_absolute_url }}">{{ roommate.name }}</a></li>
+					{% empty %}
+						<p>No roommates registered yet!</p>
+						<a href="{% url 'create_roommate' %}">Add Roommate</a>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<a href="{% url 'create_chore' slug=team.slug %}"><strong>Add+</strong></a>
-	<ul>
-	{% for chore in team.chores.all %}
-		<li><a href="{{ chore.get_absolute_url }}">{{ chore.name }}</a></li>
-	{% empty %}
-		<p>No chores registered yet!</p>
-		<a href="{% url 'create_chore' slug=team.slug %}">Add Chore</a>
-	{% endfor %}
-	</ul>
+	<div id="accordionTwo" role="tablist">
+		<div class="card">
+			<div class="card-header" role="tab" id="headingTwo">
+				<h5><a data-toggle="collapse" href="#collapseTwo">Chores</a></h5>
+			</div>
+			<div id="collapseTwo" class="collapse" role="tabpanel" data-parent="#accordionTwo">
+				<div class="card-body">
+					{% for chore in team.chores.all %}
+						<li><a href="{{ chore.get_absolute_url }}">{{ chore.name }}</a></li>
+					{% empty %}
+						<p>No chores registered yet!</p>
+						<a href="{% url 'create_chore' slug=team.slug %}">Add Chore</a>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}

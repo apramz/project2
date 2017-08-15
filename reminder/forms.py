@@ -35,6 +35,9 @@ class ChoreForm(ModelForm):
 	class Meta:
 		model = Chore
 		fields = ['name', 'description', 'deadline', 'roommate']
+		widgets = {
+			'description': forms.Textarea(attrs={'rows':5, 'cols':30}),
+		}
 
 	def __init__(self, team, *args, **kwargs):
 		super(ChoreForm, self).__init__(*args, *kwargs)

@@ -9,6 +9,10 @@
 			NAVBAR
 *********************************
 *********************************/
+ol.breadcrumb{
+	background-color: aliceblue;
+}
+
 .navbar {
 
 }

@@ -24,7 +24,18 @@
 				</ul>
 			</div>
 		</nav>
-
+		<ol class="breadcrumb">
+		  <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+		  {% if team %}
+		  	<li class="breadcrumb-item"><a href="{{ team.get_absolute_url }}">{{ team.name }}</a></li>
+		  {% endif %}
+		  {% if roommate %}
+		  	<li class="breadcrumb-item"><a href="{{ roommate.get_absolute_url }}">{{ roommate.name }}</a></li>
+		  {% endif %}
+		  {% if chore %}
+		  	<li class="breadcrumb-item"><a href="{{ chore.get_absolute_url }}">{{ chore.name }}</a></li>
+		  {% endif %}
+		</ol>
 		<div class="container">
 			<h1 class='page-title'>{% block title %}
 				{% endblock %}

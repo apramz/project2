@@ -70,9 +70,10 @@ def view_team(request, slug):
 
 def view_roommate(request, slug):
 	return render(request, 'reminder/view_roommate.html', {
-			'roommate': get_object_or_404(Roommate, slug=slug)
+			'roommate': get_object_or_404(Roommate, slug=slug),
+			'team': get_object_or_404(Roommate, slug=slug).team
 		})
-
+ 
 def view_chore(request, slug):
 	alertlater_form = AlertLaterForm()
 	alertrecurring_form = AlertRecurringForm()
@@ -80,6 +81,8 @@ def view_chore(request, slug):
 			'chore': get_object_or_404(Chore, slug=slug),
 			'alertlater_form': alertlater_form,
 			'alertrecurring_form': alertrecurring_form,
+			'team': get_object_or_404(Chore, slug=slug).team,
+			'roommate': get_object_or_404(Chore, slug=slug).roommate
 		})
 
 #Twilio Views

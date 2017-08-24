@@ -2,11 +2,12 @@
 {% block title %} {{ roommate.name }} {% endblock %}
 
 {% block content %}
-	<h2>Team: {{ roommate.team }}</h2>
+	<h2>Team: <a href="{{ roommate.team.get_absolute_url }}">{{ roommate.team }}</a></h2>
 	<p>Phone Number: {{ roommate.phone_number }}</p>
+	<p>Chores:</p>
 	<ul>
-	{% for chores in roommate.chores %}
-		<li>{{ chore.name }}</li>
+	{% for chore in roommate.chores.all %}
+		<li><a href="{{ chore.get_absolute_url }}">{{ chore.name }}</a></li>
 	{% empty %}
 		<p>No registered chores for me!</p>
 	{% endfor %}

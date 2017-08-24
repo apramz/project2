@@ -34,7 +34,7 @@ class Chore(models.Model):
 	name = models.CharField(max_length=50)
 	description = models.TextField()
 	deadline = models.DateTimeField()
-	roommate = models.ForeignKey('Roommate')
+	roommate = models.ForeignKey('Roommate', related_name='chores')
 	team = models.ForeignKey('Team', related_name='chores')
 	slug = models.SlugField(max_length=100)
 	STATUS_OPTIONS = (

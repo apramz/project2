@@ -3,39 +3,19 @@
 
 {% block content %}
 	{% if teams %}
-		<h3>Here are your teams:</h3>
-		<ul>
-		{% for team in teams %}
-			<li><a href={{ team.get_absolute_url }}>{{ team.name }}</a></li>
-		</ul>
-		{% endfor %}
+		<div class="row team-index">
+			{% for team in teams %}
+				<div class='col-lg-4 card'>
+					<div class='card-body'>
+						<h3>{{ team.name }}</h3>
+						<p>Here is the description of your team Bluxome.</p>
+						<p><a class='btn btn-primary' href="{{ team.get_absolute_url }}" role='button'>View Team &raquo;</a></p>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
 	{% else %}
 		<p>No teams registered!</p>
 		<a href="{% url 'create_team' %}">Make Team</a>
 	{% endif %}
 {% endblock %}
-
-{% comment %}
-{% block content %}
-	{% if teams %}
-	{% for team in teams %}
-		<p>Welcome to your team: <strong>{{ team.name }}</strong>.</p>
-		<a href="{% url 'create_roommate' %}">Add Roommate</a>
-		{% if team.roommates.all %}
-			<p>Here are the registered roommates:</p>
-			<ul>
-				{% for roommate in team.roommates.all %}
-					<li>{{ roommate.name }}</li>
-				{% endfor %}
-			</ul>
-		{% else %}
-			<p>No roommates registered yet!</p>
-		{% endif %}
-	{% endfor %}
-	{% else %}
-		<p>Please sign into your team.</p>
-		<p>No team yet?</p>
-		<a href="{% url 'create_team' %}">Make Team</a>
-	{% endif %}
-{% endblock %}
-{% endcomment %}

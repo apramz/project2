@@ -1,12 +1,14 @@
 {% extends 'reminder/base.html' %}
 
+{% block title %} New Roommate {% endblock %}
 {% block content %}
-	<h1>New Roommate</h1>
-	<form method="POST">
-	{% csrf_token %}
-		<p>Phone number format: +12223334444</p>
-		{{ form }}
-		<input type="submit" value="Submit" />
-		<input type="hidden" name="next" value="{{ next }}" />
-	</form>
+	<div class="card form">
+		<form method="POST">
+		{% csrf_token %}
+			<p>Phone number format: +12223334444</p>
+			{{ form.as_p }}
+			<input class='btn btn-primary' type="submit" value="Submit" />
+			<input type="hidden" name="next" value="{{ next }}" />
+		</form>
+	</div>
 {% endblock %}

@@ -41,7 +41,7 @@ def create_team(request):
 		form = TeamForm()
 	return render(request, 'registration/create_team.html', {'form': form})
 
-def create_roommate(request):
+def create_roommate(request, slug):
 	current_user = request.user
 	if request.method == "POST":
 		form = RoommateForm(current_user, request.POST)
@@ -50,7 +50,10 @@ def create_roommate(request):
 			return redirect('view_team')
 	else:
 		form = RoommateForm(current_user)
-	return render(request, 'registration/create_roommate.html', {'form': form})
+	return render(request, 'registration/create_roommate.html', {
+		'form': form,
+		'team': get_object_or_404(Team, slug=slug)
+		})
 
 def create_chore(request, slug):
 	team = get_object_or_404(Team, slug=slug)
@@ -61,7 +64,10 @@ def create_chore(request, slug):
 			return redirect('view_team', slug=team.slug)
 	else:
 		form = ChoreForm(team)
-	return render(request, 'registration/create_chore.html', {'form': form})
+	return render(request, 'registration/create_chore.html', {
+		'form': form,
+		'team': team
+		})
 
 def view_team(request, slug):
 	return render(request, 'reminder/view_team.html', {
